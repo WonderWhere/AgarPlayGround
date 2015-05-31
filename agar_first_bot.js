@@ -251,10 +251,10 @@
     da = !1;
     for (var e = a.getUint16(c, !0), c = c + 2, d = 0; d < e; ++d) {
       var f = v[a.getUint32(c, !0)],
-      g = v[a.getUint32(c + 4, !0)],
+      l_g = v[a.getUint32(c + 4, !0)],
       c = c + 8;
-      f && g && (g.destroy(), g.ox =
-      g.x, g.oy = g.y, g.oSize = g.size, g.nx = f.x, g.ny = f.y, g.nSize = g.size, g.updateTime = D)
+      f && l_g && (l_g.destroy(), l_g.ox =
+      l_g.x, l_g.oy = l_g.y, l_g.oSize = l_g.size, l_g.nx = f.x, l_g.ny = f.y, l_g.nSize = l_g.size, l_g.updateTime = D)
     }
     for (; ; ) {
       e = a.getUint32(c, !0);
@@ -762,7 +762,8 @@
                       splitted = true;
                   }
 
-                  if (biggestCluster[2] * 2.5 < m[0].size && biggestCluster[2] > m[0].size / 5 &&  biggestCluster[2] > 11 && !splitted && !splitting) {
+                  if (biggestCluster[2] * 2.5 < m[0].size && biggestCluster[2] * 2 > m[0].size &&
+                      biggestCluster[2] > 11 && !splitted && !splitting) {
                       drawLine(m[0].x, m[0].y, biggestCluster[0], biggestCluster[1], 4);
 
                       var worthyTargetDistance = computeDistance(m[0].x, m[0].y, biggestCluster[0], biggestCluster[1]);
@@ -1125,355 +1126,346 @@
     this._stroke = !!c;
     e && (this._strokeColor = e)
   }
-  if ('agar.io' != g.location.hostname && 'localhost' != g.location.hostname && '10.10.2.13' != g.location.hostname) g.location = 'http://agar.io/';
-   else if (g.top != g) g.top.location = 'http://agar.io/';
-   else {
-    var $,
-    toggle = false,
-    toggleDraw = false,
-    splitted = false,
-    splitting = false,
-    virusBait = false,
-    tempPoint = [0, 0, 1],
-    dPoints = [],
-    lines = [],
-    originalName,
-    sessionScore = 0,
-    d,
-    z,
-    l,
-    r,
-    F = null,
-    h = null,
-    s = 0,
-    t = 0,
-    B = [
-    ],
-    m = [
-    ],
-    v = {
-    },
-    p = [
-    ],
-    C = [
-    ],
-    w = [
-    ],
-    N = 0,
-    O = 0,
-    P = - 1,
-    Q = - 1,
-    Da = 0,
-    D = 0,
-    L = null,
-    S = 0,
-    T = 0,
-    U = 10000,
-    V = 10000,
-    k = 1,
-    G = null,
-    ua = !0,
-    Y = !0,
-    ga = !1,
-    da = !1,
-    M = 0,
-    ea = !1,
-    va = !1,
-    I = s = ~~((S + U) / 2),
-    J = t = ~~((T + V) / 2),
-    K = 1,
-    H = '',
-    x = null,
-    Ga = [
-      '#333333',
-      '#FF3333',
-      '#33FF33',
-      '#3333FF'
-    ],
-    ia = 'ontouchstart' in g && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
-    fa = new Image;
-    fa.src = 'img/split.png';
-    var R = null;
-    g.setNick = function (a) {
-      originalName = a;
-      ma();
-      L = a;
-      pa();
-      M = 0
-    };
-    g.setRegion = la;
-    g.setSkins = function (a) {
-      ua = a
-    };
-    g.setNames = function (a) {
-      Y = a
-    };
-    g.setDarkTheme = function (a) {
-      ea = a
-    };
-    g.setColors =
-    function (a) {
-      ga = a
-    };
-    g.setShowMass = function (a) {
-      va = a
-    };
-    g.spectate = function () {
-      A(1);
-      ma()
-    };
-    g.setGameMode = function (a) {
-      a != H && (H = a, ca())
-    };
-    g.connect = oa;
-    var sa = - 1,
-    ta = - 1,
-    y = null,
-    u = 1,
-    W = null,
-    Z = {
-    },
-    Ha = 'notreallyabot;poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;hitler;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;ussr;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;nazi;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;isis;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface'.split(';'),
-    Ia = [
-      'm\'blob'
-    ];
-    ra.prototype = {
-      id: 0,
-      points: null,
-      pointsAcc: null,
-      name: null,
-      nameCache: null,
-      sizeCache: null,
-      x: 0,
-      y: 0,
-      size: 0,
-      ox: 0,
-      oy: 0,
-      oSize: 0,
-      nx: 0,
-      ny: 0,
-      nSize: 0,
-      updateTime: 0,
-      updateCode: 0,
-      drawTime: 0,
-      destroyed: !1,
-      isVirus: !1,
-      destroy: function () {
-        var a;
-        for (a = 0; a < p.length; a++) if (p[a] == this) {
-          p.splice(a, 1);
-          break
-        }
-        delete v[this.id];
-        a = m.indexOf(this);
-        - 1 != a && (da = !0, m.splice(a, 1));
-        a = B.indexOf(this.id);
-        - 1 != a && B.splice(a, 1);
-        this.destroyed = !0;
-        C.push(this)
+  if ('agar.io' != g.location.hostname && 'localhost' != g.location.hostname && '10.10.2.13' != g.location.hostname) 
+    g.location = 'http://agar.io/';
+  else 
+    if (g.top != g) g.top.location = 'http://agar.io/';
+      else {
+      var $,
+      toggle = false,
+      toggleDraw = false,
+      splitted = false,
+      splitting = false,
+      virusBait = false,
+      tempPoint = [0, 0, 1],
+      dPoints = [],
+      lines = [],
+      originalName,
+      sessionScore = 0,
+      d,
+      z,
+      l,
+      r,
+      F = null,
+      h = null,
+      s = 0,
+      t = 0,
+      B = [],
+      m = [],
+      v = {},
+      p = [],
+      C = [],
+      w = [],
+      N = 0,
+      O = 0,
+      P = - 1,
+      Q = - 1,
+      Da = 0,
+      D = 0,
+      L = null,
+      S = 0,
+      T = 0,
+      U = 10000,
+      V = 10000,
+      k = 1,
+      G = null,
+      ua = !0,
+      Y = !0,
+      ga = !1,
+      da = !1,
+      M = 0,
+      ea = !1,
+      va = !1,
+      I = s = ~~((S + U) / 2),
+      J = t = ~~((T + V) / 2),
+      K = 1,
+      H = '',
+      x = null,
+      Ga = ['#333333','#FF3333','#33FF33','#3333FF'],
+      ia = 'ontouchstart' in g && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+      fa = new Image;
+      fa.src = 'img/split.png';
+      var R = null;
+      g.setNick = function (a) {
+        originalName = a;
+        ma();
+        L = a;
+        pa();
+        M = 0
+      };
+      g.setRegion = la;
+      g.setSkins = function (a) {
+        ua = a
+      };
+      g.setNames = function (a) {
+        Y = a
+      };
+      g.setDarkTheme = function (a) {
+        ea = a
+      };
+      g.setColors =
+      function (a) {
+        ga = a
+      };
+      g.setShowMass = function (a) {
+        va = a
+      };
+      g.spectate = function () {
+        A(1);
+        ma()
+      };
+      g.setGameMode = function (a) {
+        a != H && (H = a, ca())
+      };
+      g.connect = oa;
+      var sa = - 1,
+      ta = - 1,
+      y = null,
+      u = 1,
+      W = null,
+      Z = {
       },
-      getNameSize: function () {
-        return Math.max(~~(0.3 * this.size), 24)
-      },
-      setName: function (a) {
-        if (this.name = a) null == this.nameCache ? this.nameCache = new X(this.getNameSize(), '#FFFFFF', !0, '#000000')  : this.nameCache.setSize(this.getNameSize()),
-        this.nameCache.setValue(this.name)
-      },
-      createPoints: function () {
-        for (var a = this.getNumPoints(); this.points.length > a; ) {
-          var b = ~~(Math.random() * this.points.length);
-          this.points.splice(b, 1);
-          this.pointsAcc.splice(b, 1)
-        }
-        0 == this.points.length && 0 < a && (this.points.push({
-          c: this,
-          v: this.size,
-          x: this.x,
-          y: this.y
-        }), this.pointsAcc.push(Math.random() - 0.5));
-        for (; this.points.length < a; ) {
-          var b = ~~(Math.random() * this.points.length),
-          c = this.points[b];
-          this.points.splice(b, 0, {
+      Ha = 'notreallyabot;poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;hitler;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;ussr;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;nazi;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;isis;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface'.split(';'),
+      Ia = [
+        'm\'blob'
+      ];
+      ra.prototype = {
+        id: 0,
+        points: null,
+        pointsAcc: null,
+        name: null,
+        nameCache: null,
+        sizeCache: null,
+        x: 0,
+        y: 0,
+        size: 0,
+        ox: 0,
+        oy: 0,
+        oSize: 0,
+        nx: 0,
+        ny: 0,
+        nSize: 0,
+        updateTime: 0,
+        updateCode: 0,
+        drawTime: 0,
+        destroyed: !1,
+        isVirus: !1,
+        destroy: function () {
+          var a;
+          for (a = 0; a < p.length; a++) if (p[a] == this) {
+            p.splice(a, 1);
+            break
+          }
+          delete v[this.id];
+          a = m.indexOf(this);
+          - 1 != a && (da = !0, m.splice(a, 1));
+          a = B.indexOf(this.id);
+          - 1 != a && B.splice(a, 1);
+          this.destroyed = !0;
+          C.push(this)
+        },
+        getNameSize: function () {
+          return Math.max(~~(0.3 * this.size), 24)
+        },
+        setName: function (a) {
+          if (this.name = a) null == this.nameCache ? this.nameCache = new X(this.getNameSize(), '#FFFFFF', !0, '#000000')  : this.nameCache.setSize(this.getNameSize()),
+          this.nameCache.setValue(this.name)
+        },
+        createPoints: function () {
+          for (var a = this.getNumPoints(); this.points.length > a; ) {
+            var b = ~~(Math.random() * this.points.length);
+            this.points.splice(b, 1);
+            this.pointsAcc.splice(b, 1)
+          }
+          0 == this.points.length && 0 < a && (this.points.push({
             c: this,
-            v: c.v,
-            x: c.x,
-            y: c.y
-          });
-          this.pointsAcc.splice(b, 0, this.pointsAcc[b])
-        }
-      },
-      getNumPoints: function () {
-        var a = 10;
-        20 > this.size && (a = 5);
-        this.isVirus && (a = 30);
-        return ~~Math.max(this.size * k * (this.isVirus ? Math.min(2 * u, 1)  : u), a)
-      },
-      movePoints: function () {
-        this.createPoints();
-        for (var a = this.points, b = this.pointsAcc, c = b.concat(), e = a.concat(), d = e.length, f = 0; f < d; ++f) {
-          var g = c[(f - 1 + d) % d],
-          h = c[(f + 1) % d];
-          b[f] += Math.random() - 0.5;
-          b[f] *= 0.7;
-          10 < b[f] && (b[f] = 10);
-          - 10 > b[f] && (b[f] = - 10);
-          b[f] = (g + h + 8 * b[f]) / 10
-        }
-        for (var l = this, f = 0; f < d; ++f) {
-          c = e[f].v;
-          g = e[(f - 1 + d) % d].v;
-          h = e[(f + 1) % d].v;
-          if (15 < this.size && null != F) {
-            var k = !1,
-            n = a[f].x,
-            m = a[f].y;
-            F.retrieve2(n - 5, m - 5, 10, 10, function (a) {
-              a.c != l && 25 > (n - a.x) * (n - a.x) + (m - a.y) * (m - a.y) && (k = !0)
+            v: this.size,
+            x: this.x,
+            y: this.y
+          }), this.pointsAcc.push(Math.random() - 0.5));
+          for (; this.points.length < a; ) {
+            var b = ~~(Math.random() * this.points.length),
+            c = this.points[b];
+            this.points.splice(b, 0, {
+              c: this,
+              v: c.v,
+              x: c.x,
+              y: c.y
             });
-            !k && (a[f].x < S || a[f].y < T || a[f].x > U || a[f].y > V) && (k = !0);
-            k && (0 < b[f] && (b[f] = 0), b[f] -= 1)
+            this.pointsAcc.splice(b, 0, this.pointsAcc[b])
           }
-          c += b[f];
-          0 > c && (c = 0);
-          c = (12 * c + this.size) / 13;
-          a[f].v = (g + h + 8 * c) / 10;
-          g = 2 * Math.PI / d;
-          h = this.points[f].v;
-          this.isVirus && 0 == f % 2 && (h += 5);
-          a[f].x = this.x + Math.cos(g * f) * h;
-          a[f].y = this.y + Math.sin(g * f) *
-          h
-        }
-      },
-      updatePos: function () {
-        var a;
-        a = (D - this.updateTime) / 120;
-        a = 0 > a ? 0 : 1 < a ? 1 : a;
-        a = a * a * (3 - 2 * a);
-        this.getNameSize();
-        if (this.destroyed && 1 <= a) {
-          var b = C.indexOf(this);
-          - 1 != b && C.splice(b, 1)
-        }
-        this.x = a * (this.nx - this.ox) + this.ox;
-        this.y = a * (this.ny - this.oy) + this.oy;
-        this.size = a * (this.nSize - this.oSize) + this.oSize;
-        return a
-      },
-      shouldRender: function () {
-        return this.x + this.size + 40 < s - l / 2 / k || this.y + this.size + 40 < t - r / 2 / k || this.x - this.size - 40 > s + l / 2 / k || this.y - this.size - 40 > t + r / 2 / k ? !1 : !0
-      },
-      draw: function () {
-        if (this.shouldRender()) {
-          var a = !this.isVirus &&
-          0.5 > k;
-          d.save();
-          this.drawTime = D;
-          var b = this.updatePos();
-          this.destroyed && (d.globalAlpha *= 1 - b);
-          d.lineWidth = 10;
-          d.lineCap = 'round';
-          d.lineJoin = this.isVirus ? 'mitter' : 'round';
-          ga ? (d.fillStyle = '#FFFFFF', d.strokeStyle = '#AAAAAA')  : (d.fillStyle = this.color, d.strokeStyle = this.color);
-          if (a) d.beginPath(),
-          d.arc(this.x, this.y, this.size, 0, 2 * Math.PI, !1);
-           else {
-            this.movePoints();
-            d.beginPath();
-            b = this.getNumPoints();
-            d.moveTo(this.points[0].x, this.points[0].y);
-            for (var c = 1; c <= b; ++c) {
-              var e = c % b;
-              d.lineTo(this.points[e].x, this.points[e].y)
+        },
+        getNumPoints: function () {
+          var a = 10;
+          20 > this.size && (a = 5);
+          this.isVirus && (a = 30);
+          return ~~Math.max(this.size * k * (this.isVirus ? Math.min(2 * u, 1)  : u), a)
+        },
+        movePoints: function () {
+          this.createPoints();
+          for (var a = this.points, b = this.pointsAcc, c = b.concat(), e = a.concat(), d = e.length, f = 0; f < d; ++f) {
+            var g = c[(f - 1 + d) % d],
+            h = c[(f + 1) % d];
+            b[f] += Math.random() - 0.5;
+            b[f] *= 0.7;
+            10 < b[f] && (b[f] = 10);
+            - 10 > b[f] && (b[f] = - 10);
+            b[f] = (g + h + 8 * b[f]) / 10
+          }
+          for (var l = this, f = 0; f < d; ++f) {
+            c = e[f].v;
+            g = e[(f - 1 + d) % d].v;
+            h = e[(f + 1) % d].v;
+            if (15 < this.size && null != F) {
+              var k = !1,
+              n = a[f].x,
+              m = a[f].y;
+              F.retrieve2(n - 5, m - 5, 10, 10, function (a) {
+                a.c != l && 25 > (n - a.x) * (n - a.x) + (m - a.y) * (m - a.y) && (k = !0)
+              });
+              !k && (a[f].x < S || a[f].y < T || a[f].x > U || a[f].y > V) && (k = !0);
+              k && (0 < b[f] && (b[f] = 0), b[f] -= 1)
             }
+            c += b[f];
+            0 > c && (c = 0);
+            c = (12 * c + this.size) / 13;
+            a[f].v = (g + h + 8 * c) / 10;
+            g = 2 * Math.PI / d;
+            h = this.points[f].v;
+            this.isVirus && 0 == f % 2 && (h += 5);
+            a[f].x = this.x + Math.cos(g * f) * h;
+            a[f].y = this.y + Math.sin(g * f) *
+            h
           }
-          d.closePath();
-          b = this.name.toLowerCase();
-          ua && '' == H ? - 1 != Ha.indexOf(b) ? (Z.hasOwnProperty(b) || (Z[b] = new Image, b == "notreallyabot" ? Z[b].src = "http://i.imgur.com/ZW5T4cd.png" : Z[b].src = 'skins/' + b + '.png'), c = Z[b])  : c = null : c = null;
-          b = c ? - 1 != Ia.indexOf(b)  : !1;
-          a || d.stroke();
-          d.fill();
-          null != c && 0 < c.width && !b && (d.save(), d.clip(), d.drawImage(c, this.x - this.size, this.y - this.size, 2 * this.size, 2 * this.size), d.restore());
-          (ga || 15 < this.size) && !a && (d.strokeStyle = '#000000', d.globalAlpha *= 0.1, d.stroke());
-          d.globalAlpha = 1;
-          null != c && 0 < c.width && b && d.drawImage(c, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
-          c = - 1 != m.indexOf(this);
-          a = ~~this.y;
-          if ((Y || c) && this.name && this.nameCache) {
-            e = this.nameCache;
-            e.setValue(this.name);
-            e.setSize(this.getNameSize());
-            b = Math.ceil(10 * k) / 10;
-            e.setScale(b);
-            var e = e.render(),
-            g = ~~(e.width / b),
-            f = ~~(e.height / b);
-            d.drawImage(e, ~~this.x - ~~(g / 2), a - ~~(f / 2), g, f);
-            a += e.height / 2 / b + 4
+        },
+        updatePos: function () {
+          var a;
+          a = (D - this.updateTime) / 120;
+          a = 0 > a ? 0 : 1 < a ? 1 : a;
+          a = a * a * (3 - 2 * a);
+          this.getNameSize();
+          if (this.destroyed && 1 <= a) {
+            var b = C.indexOf(this);
+            - 1 != b && C.splice(b, 1)
           }
-          va && c && (null == this.sizeCache && (this.sizeCache = new X(this.getNameSize() / 2, '#FFFFFF', !0, '#000000')), c = this.sizeCache, c.setSize(this.getNameSize() / 2), c.setValue(~~(this.size * this.size / 100)), b = Math.ceil(10 *
-          k) / 10, c.setScale(b), e = c.render(), g = ~~(e.width / b), f = ~~(e.height / b), d.drawImage(e, ~~this.x - ~~(g / 2), a - ~~(f / 2), g, f));
-          d.restore()
+          this.x = a * (this.nx - this.ox) + this.ox;
+          this.y = a * (this.ny - this.oy) + this.oy;
+          this.size = a * (this.nSize - this.oSize) + this.oSize;
+          return a
+        },
+        shouldRender: function () {
+          return this.x + this.size + 40 < s - l / 2 / k || this.y + this.size + 40 < t - r / 2 / k || this.x - this.size - 40 > s + l / 2 / k || this.y - this.size - 40 > t + r / 2 / k ? !1 : !0
+        },
+        draw: function () {
+          if (this.shouldRender()) {
+            var a = !this.isVirus &&
+            0.5 > k;
+            d.save();
+            this.drawTime = D;
+            var b = this.updatePos();
+            this.destroyed && (d.globalAlpha *= 1 - b);
+            d.lineWidth = 10;
+            d.lineCap = 'round';
+            d.lineJoin = this.isVirus ? 'mitter' : 'round';
+            ga ? (d.fillStyle = '#FFFFFF', d.strokeStyle = '#AAAAAA')  : (d.fillStyle = this.color, d.strokeStyle = this.color);
+            if (a) d.beginPath(),
+            d.arc(this.x, this.y, this.size, 0, 2 * Math.PI, !1);
+             else {
+              this.movePoints();
+              d.beginPath();
+              b = this.getNumPoints();
+              d.moveTo(this.points[0].x, this.points[0].y);
+              for (var c = 1; c <= b; ++c) {
+                var e = c % b;
+                d.lineTo(this.points[e].x, this.points[e].y)
+              }
+            }
+            d.closePath();
+            b = this.name.toLowerCase();
+            ua && '' == H ? - 1 != Ha.indexOf(b) ? (Z.hasOwnProperty(b) || (Z[b] = new Image, b == "notreallyabot" ? Z[b].src = "http://i.imgur.com/ZW5T4cd.png" : Z[b].src = 'skins/' + b + '.png'), c = Z[b])  : c = null : c = null;
+            b = c ? - 1 != Ia.indexOf(b)  : !1;
+            a || d.stroke();
+            d.fill();
+            null != c && 0 < c.width && !b && (d.save(), d.clip(), d.drawImage(c, this.x - this.size, this.y - this.size, 2 * this.size, 2 * this.size), d.restore());
+            (ga || 15 < this.size) && !a && (d.strokeStyle = '#000000', d.globalAlpha *= 0.1, d.stroke());
+            d.globalAlpha = 1;
+            null != c && 0 < c.width && b && d.drawImage(c, this.x - 2 * this.size, this.y - 2 * this.size, 4 * this.size, 4 * this.size);
+            c = - 1 != m.indexOf(this);
+            a = ~~this.y;
+            if ((Y || c) && this.name && this.nameCache) {
+              e = this.nameCache;
+              e.setValue(this.name);
+              e.setSize(this.getNameSize());
+              b = Math.ceil(10 * k) / 10;
+              e.setScale(b);
+              var e = e.render(),
+              g = ~~(e.width / b),
+              f = ~~(e.height / b);
+              d.drawImage(e, ~~this.x - ~~(g / 2), a - ~~(f / 2), g, f);
+              a += e.height / 2 / b + 4
+            }
+            va && c && (null == this.sizeCache && (this.sizeCache = new X(this.getNameSize() / 2, '#FFFFFF', !0, '#000000')), c = this.sizeCache, c.setSize(this.getNameSize() / 2), c.setValue(~~(this.size * this.size / 100)), b = Math.ceil(10 *
+            k) / 10, c.setScale(b), e = c.render(), g = ~~(e.width / b), f = ~~(e.height / b), d.drawImage(e, ~~this.x - ~~(g / 2), a - ~~(f / 2), g, f));
+            d.restore()
+          }
         }
-      }
-    };
-    X.prototype = {
-      _value: '',
-      _color: '#000000',
-      _stroke: !1,
-      _strokeColor: '#000000',
-      _size: 16,
-      _canvas: null,
-      _ctx: null,
-      _dirty: !1,
-      _scale: 1,
-      setSize: function (a) {
-        this._size != a && (this._size = a, this._dirty = !0)
-      },
-      setScale: function (a) {
-        this._scale != a && (this._scale = a, this._dirty = !0)
-      },
-      setColor: function (a) {
-        this._color != a && (this._color = a, this._dirty = !0)
-      },
-      setStroke: function (a) {
-        this._stroke != a && (this._stroke =
-        a, this._dirty = !0)
-      },
-      setStrokeColor: function (a) {
-        this._strokeColor != a && (this._strokeColor = a, this._dirty = !0)
-      },
-      setValue: function (a) {
-        a != this._value && (this._value = a, this._dirty = !0)
-      },
-      render: function () {
-        null == this._canvas && (this._canvas = document.createElement('canvas'), this._ctx = this._canvas.getContext('2d'));
-        if (this._dirty) {
-          this._dirty = !1;
-          var a = this._canvas,
-          b = this._ctx,
-          c = this._value,
-          e = this._scale,
-          d = this._size,
-          f = d + 'px Ubuntu';
-          b.font = f;
-          var g = b.measureText(c).width,
-          h = ~~(0.2 * d);
-          a.width = (g + 6) * e;
-          a.height = (d + h) * e;
-          b.font = f;
-          b.scale(e, e);
-          b.globalAlpha = 1;
-          b.lineWidth = 3;
-          b.strokeStyle = this._strokeColor;
-          b.fillStyle = this._color;
-          this._stroke && b.strokeText(c, 3, d - h / 2);
-          b.fillText(c, 3, d - h / 2)
+      };
+      X.prototype = {
+        _value: '',
+        _color: '#000000',
+        _stroke: !1,
+        _strokeColor: '#000000',
+        _size: 16,
+        _canvas: null,
+        _ctx: null,
+        _dirty: !1,
+        _scale: 1,
+        setSize: function (a) {
+          this._size != a && (this._size = a, this._dirty = !0)
+        },
+        setScale: function (a) {
+          this._scale != a && (this._scale = a, this._dirty = !0)
+        },
+        setColor: function (a) {
+          this._color != a && (this._color = a, this._dirty = !0)
+        },
+        setStroke: function (a) {
+          this._stroke != a && (this._stroke =
+          a, this._dirty = !0)
+        },
+        setStrokeColor: function (a) {
+          this._strokeColor != a && (this._strokeColor = a, this._dirty = !0)
+        },
+        setValue: function (a) {
+          a != this._value && (this._value = a, this._dirty = !0)
+        },
+        render: function () {
+          null == this._canvas && (this._canvas = document.createElement('canvas'), this._ctx = this._canvas.getContext('2d'));
+          if (this._dirty) {
+            this._dirty = !1;
+            var a = this._canvas,
+            b = this._ctx,
+            c = this._value,
+            e = this._scale,
+            d = this._size,
+            f = d + 'px Ubuntu';
+            b.font = f;
+            var g = b.measureText(c).width,
+            h = ~~(0.2 * d);
+            a.width = (g + 6) * e;
+            a.height = (d + h) * e;
+            b.font = f;
+            b.scale(e, e);
+            b.globalAlpha = 1;
+            b.lineWidth = 3;
+            b.strokeStyle = this._strokeColor;
+            b.fillStyle = this._color;
+            this._stroke && b.strokeText(c, 3, d - h / 2);
+            b.fillText(c, 3, d - h / 2)
+          }
+          return this._canvas
         }
-        return this._canvas
-      }
-    };
-    g.onload = wa
-  }
+      };
+      g.onload = wa
+    }
 }) (window, jQuery);
