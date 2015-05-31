@@ -8,7 +8,7 @@
 // @author      twitch.tv/apostolique
 // ==/UserScript==
 
-(function (g_Wnd, q) {
+(function (g, q) {
   function wa() {
     ha();
     setInterval(ha, 180000);
@@ -39,7 +39,7 @@
     var a = !1,
     b = !1,
     c = !1;
-    g_Wnd.onkeydown = function (e) {
+    g.onkeydown = function (e) {
       32 != e.keyCode || a || (E(), A(17), a = !0);
       81 != e.keyCode || b || (A(18), b = !0);
       87 != e.keyCode || c || (E(), A(21), c = !0);
@@ -54,18 +54,18 @@
         toggleDraw = !toggleDraw;
       }
     };
-    g_Wnd.onkeyup = function (e) {
+    g.onkeyup = function (e) {
       32 == e.keyCode && (a = !1);
       87 == e.keyCode && (c = !1);
       81 == e.keyCode && b && (A(19), b = !1)
     };
-    g_Wnd.onblur = function () {
+    g.onblur = function () {
       A(19);
       c = b = a = !1
     };
-    g_Wnd.onresize = ja;
+    g.onresize = ja;
     ja();
-    g_Wnd.requestAnimationFrame ? g_Wnd.requestAnimationFrame(ka)  : setInterval(ba, 1000 / 60);
+    g.requestAnimationFrame ? g.requestAnimationFrame(ka)  : setInterval(ba, 1000 / 60);
     setInterval(E, 40);
     la(q('#region').val());
     q('#overlays').show()
@@ -184,7 +184,7 @@
         var b = e.getUint16(c, !0);
         c += 2;
         if (0 == b) break;
-        a += String_Wnd.fromCharCode(b)
+        a += String.fromCharCode(b)
       }
       return a
     }
@@ -253,8 +253,8 @@
       var f = v[a.getUint32(c, !0)],
       g = v[a.getUint32(c + 4, !0)],
       c = c + 8;
-      f && g && (g_Wnd.destroy(), g_Wnd.ox =
-      g_Wnd.x, g_Wnd.oy = g_Wnd.y, g_Wnd.oSize = g_Wnd.size, g_Wnd.nx = f.x, g_Wnd.ny = f.y, g_Wnd.nSize = g_Wnd.size, g_Wnd.updateTime = D)
+      f && g && (g.destroy(), g.ox =
+      g.x, g.oy = g.y, g.oSize = g.size, g.nx = f.x, g.ny = f.y, g.nSize = g.size, g.updateTime = D)
     }
     for (; ; ) {
       e = a.getUint32(c, !0);
@@ -271,7 +271,7 @@
         var n = a.getUint16(c, !0),
         c = c + 2;
         if (0 == n) break;
-        l += String_Wnd.fromCharCode(n)
+        l += String.fromCharCode(n)
       }
       n = null;
       v.hasOwnProperty(e) ? (n = v[e], n.updatePos(), n.ox = n.x, n.oy = n.y, n.oSize = n.size, n.color = h)  : (n = new ra(e, d, f, g, h, k, l), n.pX = d, n.pY = f);
@@ -925,11 +925,11 @@
   }
   function ka() {
     ba();
-    g_Wnd.requestAnimationFrame(ka)
+    g.requestAnimationFrame(ka)
   }
   function ja() {
-    l = g_Wnd.innerWidth;
-    r = g_Wnd.innerHeight;
+    l = g.innerWidth;
+    r = g.innerHeight;
     $.width = z.width = l;
     $.height = z.height = r;
     ba()
@@ -1125,12 +1125,9 @@
     this._stroke = !!c;
     e && (this._strokeColor = e)
   }
-  if ('agar.io' != g_Wnd.location.hostname && 'localhost' != g_Wnd.location.hostname && '10.10.2.13' != g_Wnd.location.hostname)
-    g_Wnd.location = 'http://agar.io/';
-  else
-    if (g_Wnd.top != g)
-      g_Wnd.top.location = 'http://agar.io/';
-    else {
+  if ('agar.io' != g.location.hostname && 'localhost' != g.location.hostname && '10.10.2.13' != g.location.hostname) g.location = 'http://agar.io/';
+   else if (g.top != g) g.top.location = 'http://agar.io/';
+   else {
     var $,
     toggle = false,
     toggleDraw = false,
@@ -1197,46 +1194,49 @@
     fa = new Image;
     fa.src = 'img/split.png';
     var R = null;
-    g_Wnd.setNick = function (a) {
+    g.setNick = function (a) {
       originalName = a;
       ma();
       L = a;
       pa();
       M = 0
     };
-    g_Wnd.setRegion = la;
-    g_Wnd.setSkins = function (a) {
+    g.setRegion = la;
+    g.setSkins = function (a) {
       ua = a
     };
-    g_Wnd.setNames = function (a) {
+    g.setNames = function (a) {
       Y = a
     };
-    g_Wnd.setDarkTheme = function (a) {
+    g.setDarkTheme = function (a) {
       ea = a
     };
-    g_Wnd.setColors =
+    g.setColors =
     function (a) {
       ga = a
     };
-    g_Wnd.setShowMass = function (a) {
+    g.setShowMass = function (a) {
       va = a
     };
-    g_Wnd.spectate = function () {
+    g.spectate = function () {
       A(1);
       ma()
     };
-    g_Wnd.setGameMode = function (a) {
+    g.setGameMode = function (a) {
       a != H && (H = a, ca())
     };
-    g_Wnd.connect = oa;
+    g.connect = oa;
     var sa = - 1,
     ta = - 1,
     y = null,
     u = 1,
     W = null,
-    Z = {},
+    Z = {
+    },
     Ha = 'notreallyabot;poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;hitler;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;ussr;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;nazi;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;ea;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;isis;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface'.split(';'),
-    Ia = ['m\'blob'];
+    Ia = [
+      'm\'blob'
+    ];
     ra.prototype = {
       id: 0,
       points: null,
@@ -1474,6 +1474,6 @@
         return this._canvas
       }
     };
-    g_Wnd.onload = wa
+    g.onload = wa
   }
 }) (window, jQuery);
